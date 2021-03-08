@@ -1,0 +1,30 @@
+.phoneBook {
+  width: 400px;
+  padding: 20px 20px;
+  border-radius: 30px;
+  background-color: lightgray;
+  box-shadow: 5px 5px 5px 5px darkgray;
+  height: fit-content;
+  margin: 15px auto 0 auto;
+}
+
+.contactsList-appear {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+.contactsList-appear-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 250ms linear;
+}
+
+.contactsList-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.contactsList-exit-active {
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: all 250ms linear;
+}

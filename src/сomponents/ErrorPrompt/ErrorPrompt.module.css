@@ -1,0 +1,45 @@
+.errorPrompt {
+  min-width: 300px;
+  padding: 10px;
+  font-size: 18px;
+  text-align: center;
+  color: white;
+  background-color: rgb(238, 14, 14);
+  border-radius: 30px;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.appear {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.appearActive {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 300ms linear;
+}
+/* .enter {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.enterActive {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 300ms linear;
+} */
+
+.exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.exitActive {
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 250ms linear;
+}

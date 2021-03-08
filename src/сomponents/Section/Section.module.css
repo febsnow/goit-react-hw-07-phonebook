@@ -1,0 +1,40 @@
+.section {
+  padding: 10px;
+  overflow: hidden;
+}
+.sectionTitle {
+  margin: 10px 0 10px 10px;
+}
+.appear {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+.appearActive {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 300ms linear;
+}
+/* 
+.enter {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+.enterActive {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 250ms linear;
+} */
+
+.exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.exitActive {
+  opacity: 0;
+
+  transform: translateY(-100%);
+  transition: all 500ms linear 250ms;
+}
