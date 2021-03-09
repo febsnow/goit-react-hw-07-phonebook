@@ -3,7 +3,10 @@ import PropTypes from "prop-types";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { connect } from "react-redux";
 import operations from "../../redux/operations/operations";
-import { getAllContacts, getFilteredContacts } from "../../redux/contacts-selectors";
+import {
+  getAllContacts,
+  getFilteredContacts,
+} from "../../redux/contacts-selectors";
 import "./ContactList.css";
 
 class ContactList extends Component {
@@ -48,7 +51,7 @@ class ContactList extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const allContacts = getAllContacts(state)
+  const allContacts = getAllContacts(state);
   const filteredContacts = getFilteredContacts(state);
 
   return {

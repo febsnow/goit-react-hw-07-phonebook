@@ -26,16 +26,26 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props);
     const { items, isLoading } = this.props;
     return (
       <>
         {isLoading && <Preloader />}
-        <CSSTransition in={true} appear={true} timeout={250} classNames={styles} unmountOnExit>
+        <CSSTransition
+          in={true}
+          appear={true}
+          timeout={250}
+          classNames={styles}
+          unmountOnExit
+        >
           {(stage) => {
             return (
               <div className="phoneBook">
-                <CSSTransition in={stage === "entered"} timeout={500} classNames={logo} unmountOnExit>
+                <CSSTransition
+                  in={stage === "entered"}
+                  timeout={500}
+                  classNames={logo}
+                  unmountOnExit
+                >
                   <Logo title="Phonebook" />
                 </CSSTransition>
 
@@ -48,20 +58,28 @@ class App extends Component {
                   in={items && items.length > 1}
                   timeout={300}
                   classNames={styles}
-                  unmountOnExit>
+                  unmountOnExit
+                >
                   <Section>
                     <Filter />
                   </Section>
                 </CSSTransition>
 
-                <CSSTransition appear={true} in={items.length > 0} timeout={300} classNames={styles} unmountOnExit>
+                <CSSTransition
+                  appear={true}
+                  in={items.length > 0}
+                  timeout={300}
+                  classNames={styles}
+                  unmountOnExit
+                >
                   <Section title="Contacts">
                     <CSSTransition
                       // appear={true}
                       in={true}
                       timeout={250}
                       classNames="contactsList"
-                      unmountOnExit>
+                      unmountOnExit
+                    >
                       <ContactList />
                     </CSSTransition>
                   </Section>
