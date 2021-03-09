@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { connect } from "react-redux";
 import operations from "../../redux/operations/operations";
+import { getAllContacts, getFilteredContacts } from "../../redux/contacts-selectors";
 import "./ContactList.css";
 
 class ContactList extends Component {
@@ -46,20 +47,12 @@ class ContactList extends Component {
   }
 }
 
-const getFiltredContacts = (contacts, filter) => {
-  const normalizedFilter = filter.toLowerCase();
-
-  return contacts.filter(({ name }) =>
-    name.toLowerCase().includes(normalizedFilter)
-  );
-};
-
 const mapStateToProps = (state) => {
-  const { items, filter } = state.contacts;
-  const filteredContacts = getFiltredContacts(items, filter);
+  const allContacts = getAllContacts(state)
+  const filteredContacts = getFilteredContacts(state);
 
   return {
-    items: filteredContacts.length > 0 ? filteredContacts : items,
+    items: filteredContacts.length > 0 ? filteredContacts : allContacts,
   };
 };
 

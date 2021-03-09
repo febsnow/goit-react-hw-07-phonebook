@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 import ErrorPrompt from "../ErrorPrompt/ErrorPrompt";
 import styles from "./AddContactForm.module.css";
 import operations from "../../redux/operations/operations";
-import * as errorMsg from "../ErrorPrompt/ErrorPrompt.module.css";
 import { CSSTransition } from "react-transition-group";
+import { getAllContacts } from "../../redux/contacts-selectors";
+import * as errorMsg from "../ErrorPrompt/ErrorPrompt.module.css";
 
 class AddContactForm extends Component {
   state = {
@@ -20,14 +21,15 @@ class AddContactForm extends Component {
   submitHandler = (evt) => {
     evt.preventDefault();
 
+    const { name, number } = this.state;
+
     if (
       this.props.items.find(
         (contact) =>
-          contact.name.toLowerCase() === this.state.name.toLowerCase()
+          contact.name.toLowerCase() === name.toLowerCase()
       )
     ) {
-      console.log(this.state.name);
-      this.setState({ message: `${this.state.name} already exist` });
+      this.setState({ message: `${name} already exist` });
       this.setState({ name: "", number: "" });
 
       return setTimeout(() => {
@@ -35,22 +37,23 @@ class AddContactForm extends Component {
       }, 3000);
     }
 
-    this.props.onSubmit(this.state.name, this.state.number);
+    this.props.onSubmit(name, number);
 
     this.setState({ name: "", number: "" });
   };
 
   render() {
+    const { name, number, message } = this.state;
     return (
       <>
         <CSSTransition
           appear={true}
-          in={this.state.message !== null}
+          in={message !== null}
           timeout={300}
           classNames={errorMsg}
           unmountOnExit
         >
-          <ErrorPrompt message={this.state.message} />
+          <ErrorPrompt message={message} />
         </CSSTransition>
 
         <form className={styles.contactsForm} onSubmit={this.submitHandler}>
@@ -60,7 +63,7 @@ class AddContactForm extends Component {
           <input
             className={styles.formInput}
             type="text"
-            value={this.state.name}
+            value={name}
             name="name"
             id="contactName"
             placeholder="Enter name"
@@ -73,7 +76,7 @@ class AddContactForm extends Component {
           <input
             className={styles.formInput}
             type="tel"
-            value={this.state.number}
+            value={number}
             name="number"
             id="contactNumber"
             placeholder="Enter phone number"
@@ -91,7 +94,7 @@ class AddContactForm extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    items: state.contacts.items,
+    items: getAllContacts(state),
   };
 };
 

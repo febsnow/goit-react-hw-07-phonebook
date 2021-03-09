@@ -1,19 +1,3 @@
 {
-  "contacts": [
-    {
-      "name": "Rosie Simpson",
-      "number": "090239509025",
-      "id": 1
-    },
-    {
-      "name": "Annie Copeland",
-      "number": "fsdf",
-      "id": 2
-    },
-    {
-      "name": "book",
-      "number": "345664",
-      "id": 3
-    }
-  ]
+  "contacts": []
 }
