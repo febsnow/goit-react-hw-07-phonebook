@@ -36,7 +36,11 @@ class AddContactForm extends Component {
       }, 3000);
     }
 
-    this.props.onSubmit(name, number);
+    const newContact = {
+      name,
+      number,
+    };
+    this.props.onSubmit(newContact);
 
     this.setState({ name: "", number: "" });
   };
@@ -98,8 +102,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onSubmit: (name, number) => {
-    dispatch(operations.addContact(name, number));
+  onSubmit: (newContact) => {
+    dispatch(operations.addContact(newContact));
   },
 });
 
