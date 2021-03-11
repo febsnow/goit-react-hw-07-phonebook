@@ -16,6 +16,8 @@ export const getFilteredContacts = createSelector(
   }
 );
 
+export const getError = (state) => state.contacts.error;
+
 // export const getFilteredContacts = (state) => {
 //   const contacts = getAllContacts(state);
 //   const filter = getFilter(state);

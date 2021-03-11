@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { connect } from "react-redux";
-import operations from "../../redux/operations/operations";
+import operations from "../../redux/contacts/operations";
 import {
   getAllContacts,
   getFilteredContacts,
-} from "../../redux/contacts-selectors";
+} from "../../redux/contacts/contacts-selectors";
 import "./ContactList.css";
 
 class ContactList extends Component {

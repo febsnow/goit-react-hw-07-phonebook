@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import ErrorPrompt from "../ErrorPrompt/ErrorPrompt";
 import styles from "./AddContactForm.module.css";
-import operations from "../../redux/operations/operations";
+import operations from "../../redux/contacts/operations";
 import { CSSTransition } from "react-transition-group";
-import { getAllContacts } from "../../redux/contacts-selectors";
+import { getAllContacts } from "../../redux/contacts/contacts-selectors";
 import * as errorMsg from "../ErrorPrompt/ErrorPrompt.module.css";
 
 class AddContactForm extends Component {
@@ -25,8 +25,7 @@ class AddContactForm extends Component {
 
     if (
       this.props.items.find(
-        (contact) =>
-          contact.name.toLowerCase() === name.toLowerCase()
+        (contact) => contact.name.toLowerCase() === name.toLowerCase()
       )
     ) {
       this.setState({ message: `${name} already exist` });
@@ -46,15 +45,15 @@ class AddContactForm extends Component {
     const { name, number, message } = this.state;
     return (
       <>
-        <CSSTransition
+        {/* <CSSTransition
           appear={true}
           in={message !== null}
           timeout={300}
           classNames={errorMsg}
           unmountOnExit
-        >
-          <ErrorPrompt message={message} />
-        </CSSTransition>
+        > */}
+        <ErrorPrompt message={message} />
+        {/* </CSSTransition> */}
 
         <form className={styles.contactsForm} onSubmit={this.submitHandler}>
           <label htmlFor="contactName" className={styles.label}>

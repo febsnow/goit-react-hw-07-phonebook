@@ -6,7 +6,7 @@ const ErrorPrompt = ({ message }) => {
   return (
     <CSSTransition
       appear={true}
-      in={true}
+      in={message !== null}
       timeout={250}
       classNames={styles}
       unmountOnExit

@@ -7,13 +7,19 @@ import AddContactForm from "./сomponents/AddContactForm/AddContactForm";
 import ContactList from "./сomponents/ContactsList/ContactList";
 import Filter from "./сomponents/Filter/Filter";
 import Logo from "./сomponents/Logo/Logo";
+import ErrorPrompt from "./сomponents/ErrorPrompt/ErrorPrompt";
 import { Preloader } from "./сomponents/Loader/Loader";
 
-import styles from "../src/сomponents/Section/Section.module.css";
-import operations from "./redux/operations/operations";
-import { getAllContacts, isContactsLoading } from "./redux/contacts-selectors";
+import operations from "./redux/contacts/operations";
+import {
+  getAllContacts,
+  getError,
+  isContactsLoading,
+} from "./redux/contacts/contacts-selectors";
 
-import * as logo from "../src/сomponents/Logo/Logo.module.css";
+import styles from "./сomponents/Section/Section.module.css";
+import * as logo from "./сomponents/Logo/Logo.module.css";
+import * as errorMsg from "./сomponents/ErrorPrompt/ErrorPrompt.module.css";
 import "./App.css";
 
 class App extends Component {
@@ -26,10 +32,13 @@ class App extends Component {
   }
 
   render() {
-    const { items, isLoading } = this.props;
+    const { items, isLoading, error } = this.props;
+
     return (
       <>
         {isLoading && <Preloader />}
+        {error && <ErrorPrompt message={error} />}
+
         <CSSTransition
           in={true}
           appear={true}
@@ -101,6 +110,7 @@ const mapStateToProps = (state) => {
   return {
     items: getAllContacts(state),
     isLoading: isContactsLoading(state),
+    error: getError(state),
   };
 };
 
