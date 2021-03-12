@@ -13,8 +13,6 @@ const fetchContacts = () => (dispatch) => {
 };
 
 const addContact = (contact) => (dispatch) => {
-  // const contact = { name, number };
-
   dispatch(actions.addContactRequest());
 
   axios

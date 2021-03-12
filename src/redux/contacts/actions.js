@@ -12,7 +12,7 @@ const removeContactRequest = createAction("contacts/removeContactRequest");
 const removeContactSuccess = createAction("contacts/removeContactSuccess");
 const removeContactError = createAction("contacts/removeContactError");
 
-const resetError = createAction("contacts/resetError");
+const clearError = createAction("contacts/clearError");
 
 const filterContacts = createAction("contacts/filter");
 
@@ -27,6 +27,6 @@ export default {
   fetchContactSuccess,
   fetchContactError,
 
-  resetError,
+  clearError,
   filterContacts,
 };

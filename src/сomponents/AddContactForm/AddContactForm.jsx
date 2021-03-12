@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import ErrorPrompt from "../ErrorPrompt/ErrorPrompt";
-import styles from "./AddContactForm.module.css";
 import operations from "../../redux/contacts/operations";
-import { CSSTransition } from "react-transition-group";
 import { getAllContacts } from "../../redux/contacts/contacts-selectors";
-import * as errorMsg from "../ErrorPrompt/ErrorPrompt.module.css";
+
+import styles from "./AddContactForm.module.css";
 
 class AddContactForm extends Component {
   state = {
@@ -49,15 +48,8 @@ class AddContactForm extends Component {
     const { name, number, message } = this.state;
     return (
       <>
-        {/* <CSSTransition
-          appear={true}
-          in={message !== null}
-          timeout={300}
-          classNames={errorMsg}
-          unmountOnExit
-        > */}
-        <ErrorPrompt message={message} />
-        {/* </CSSTransition> */}
+        
+        {message && <ErrorPrompt message={message} />}
 
         <form className={styles.contactsForm} onSubmit={this.submitHandler}>
           <label htmlFor="contactName" className={styles.label}>
