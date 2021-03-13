@@ -8,6 +8,7 @@ import {
   getFilteredContacts,
 } from "../../redux/contacts/contacts-selectors";
 import "./ContactList.css";
+import ErrorPrompt from "../ErrorPrompt/ErrorPrompt";
 
 class ContactList extends Component {
   static propTypes = {
@@ -19,33 +20,37 @@ class ContactList extends Component {
     const { items, handleRemove } = this.props;
 
     return (
-      <TransitionGroup component="ul" className="list">
-        {items.map((contact) => {
-          return (
-            <CSSTransition
-              appear={true}
-              key={contact.id}
-              timeout={650}
-              classNames="item"
-              unmountOnExit
-            >
-              <li className="listItem">
-                <span className="info">{contact.name}:</span>
-                <span className="info">{contact.number}</span>
-                <button
-                  className="button"
-                  type="button"
-                  onClick={() => {
-                    handleRemove(contact.id);
-                  }}
+      <>
+        {items === null && <p>Nothing found</p>}
+        <TransitionGroup component="ul" className="list">
+          {items &&
+            items.map((contact) => {
+              return (
+                <CSSTransition
+                  appear={true}
+                  key={contact.id}
+                  timeout={650}
+                  classNames="item"
+                  unmountOnExit
                 >
-                  Удалить
-                </button>
-              </li>
-            </CSSTransition>
-          );
-        })}
-      </TransitionGroup>
+                  <li className="listItem">
+                    <span className="info">{contact.name}:</span>
+                    <span className="info">{contact.number}</span>
+                    <button
+                      className="button"
+                      type="button"
+                      onClick={() => {
+                        handleRemove(contact.id);
+                      }}
+                    >
+                      Удалить
+                    </button>
+                  </li>
+                </CSSTransition>
+              );
+            })}
+        </TransitionGroup>
+      </>
     );
   }
 }
@@ -54,9 +59,17 @@ const mapStateToProps = (state) => {
   const allContacts = getAllContacts(state);
   const filteredContacts = getFilteredContacts(state);
 
-  return {
-    items: filteredContacts.length > 0 ? filteredContacts : allContacts,
-  };
+  if (filteredContacts.length > 0) {
+    return { items: filteredContacts };
+  }
+  if (filteredContacts.length === 0) {
+    return { items: null };
+  }
+
+  return { items: allContacts };
+  // return {
+  //   items: filteredContacts.length > 0 ? filteredContacts : allContacts,
+  // };
 };
 
 const mapDispatchToProps = (dispatch) => {

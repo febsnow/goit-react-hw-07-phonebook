@@ -1,6 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
-import actions from "./contacts/actions";
+import actions from "./actions";
 
 const {
   fetchContactRequest,
